@@ -18,31 +18,31 @@ import model.MySQL2;
 public class userManagement1 extends javax.swing.JPanel {
 
     private Home home;
-    
+
     /**
      * Creates new form userManagement1
      */
     public userManagement1(Home home) {
         initComponents();
-        loadUsers();
+        loadUsers("SELECT * FROM `user` "
+                + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
+                + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id`");
         loadTypes();
         loadStatus();
         this.home = home;
     }
 
-    private void loadUsers(){
-        
-        try{
-            
-            DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+    private void loadUsers(String query) {
+
+        try {
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             dtm.setRowCount(0);
-            
-            ResultSet resultSet = MySQL2.executeSearch("SELECT * FROM `user` "
-                    + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
-                    + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id` ");
-            
-            while(resultSet.next()){
-                
+
+            ResultSet resultSet = MySQL2.executeSearch("query");
+
+            while (resultSet.next()) {
+
                 Vector vector = new Vector();
                 vector.add(resultSet.getString("id"));
                 vector.add(resultSet.getString("fname"));
@@ -52,67 +52,67 @@ public class userManagement1 extends javax.swing.JPanel {
                 vector.add(resultSet.getString("type"));
                 vector.add(resultSet.getString("status"));
                 dtm.addRow(vector);
-                
+
             }
-            
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    private void loadTypes(){
-        
+
+    private void loadTypes() {
+
         try {
-            
+
             ResultSet rs1 = MySQL2.executeSearch("SELECT * FROM `user_type`");
-            
+
             Vector vector = new Vector();
             vector.add("Select");
-            
+
             while (rs1.next()) {
                 vector.add(rs1.getString("type"));
             }
-            
+
             DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) jComboBox1.getModel();
-            
+
             comboBoxModel.removeAllElements();
-            
+
             comboBoxModel.addAll(vector);
             jComboBox1.setSelectedIndex(0);
-            
-        }catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    private void loadStatus(){
-        
+
+    private void loadStatus() {
+
         try {
-            
+
             ResultSet rs1 = MySQL2.executeSearch("SELECT * FROM `user_status`");
-            
+
             Vector vector = new Vector();
             vector.add("Select");
-            
+
             while (rs1.next()) {
                 vector.add(rs1.getString("status"));
             }
-            
+
             DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) jComboBox2.getModel();
-            
+
             comboBoxModel.removeAllElements();
-            
+
             comboBoxModel.addAll(vector);
             jComboBox2.setSelectedIndex(0);
-            
-        }catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,6 +162,11 @@ public class userManagement1 extends javax.swing.JPanel {
         jTextField3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
         jTextField4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel5.setText(bundle.getString("userManagement1.jLabel5.text")); // NOI18N
@@ -374,23 +379,37 @@ public class userManagement1 extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int selectedRow = jTable1.getSelectedRow();
-        if(selectedRow != -1){
-            
-            jTextField1.setText(String.valueOf(jTable1.getValueAt(selectedRow,1)));
-            
-            jTextField2.setText(String.valueOf(jTable1.getValueAt(selectedRow,2)));
 
-            jTextField3.setText(String.valueOf(jTable1.getValueAt(selectedRow,3)));
+        if (evt.getClickCount() == 2) {
 
-            jTextField4.setText(String.valueOf(jTable1.getValueAt(selectedRow,4)));
+            int selectedRow = jTable1.getSelectedRow();
+            if (selectedRow != -1) {
 
-            jComboBox1.setSelectedItem(String.valueOf(jTable1.getValueAt(selectedRow, 5)));
+                jTextField1.setText(String.valueOf(jTable1.getValueAt(selectedRow, 1)));
 
-            jComboBox2.setSelectedItem(String.valueOf(jTable1.getValueAt(selectedRow, 6)));
-            
+                jTextField2.setText(String.valueOf(jTable1.getValueAt(selectedRow, 2)));
+
+                jTextField3.setText(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
+
+                jTextField4.setText(String.valueOf(jTable1.getValueAt(selectedRow, 4)));
+
+                jComboBox1.setSelectedItem(String.valueOf(jTable1.getValueAt(selectedRow, 5)));
+
+                jComboBox2.setSelectedItem(String.valueOf(jTable1.getValueAt(selectedRow, 6)));
+
+            }
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        String text = jTextField3.getText();
+
+        loadUsers("SELECT * FROM `user` "
+                + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
+                + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id`"
+                + "WHERE `mobile` LIKE '%" + text + "%' ");
+
+    }//GEN-LAST:event_jTextField4KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
