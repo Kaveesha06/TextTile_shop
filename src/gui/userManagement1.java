@@ -408,6 +408,9 @@ public class userManagement1 extends javax.swing.JPanel {
                 + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
                 + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id`"
                 + "WHERE `mobile` LIKE '%" + text + "%' ");
+        
+        reset();
+        jTextField3.setText(text);
 
     }//GEN-LAST:event_jTextField4KeyReleased
 
@@ -436,4 +439,12 @@ public class userManagement1 extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+    }
 }
