@@ -10,9 +10,15 @@ public class MySQL2 {
     private static Connection connection;
 
     public static void createConnection() throws Exception {
-        if (connection == null) {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopapp", "root", "Kaveesh3841k");
+        try{
+            if (connection == null) {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root", "Kaveesh3841k");
+        }
+          
+            
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

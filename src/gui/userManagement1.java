@@ -6,6 +6,7 @@ package gui;
 
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL2;
@@ -24,6 +25,7 @@ public class userManagement1 extends javax.swing.JPanel {
     public userManagement1(Home home) {
         initComponents();
         loadUsers();
+        loadTypes();
         this.home = home;
     }
 
@@ -35,7 +37,7 @@ public class userManagement1 extends javax.swing.JPanel {
             dtm.setRowCount(0);
             
             ResultSet resultSet = MySQL2.executeSearch("SELECT * FROM `user` "
-                    + "INNER JOIN `user_type_` ON `user`.`user_type_id` = `user_type`.`id` "
+                    + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
                     + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id` ");
             
             while(resultSet.next()){
@@ -46,13 +48,39 @@ public class userManagement1 extends javax.swing.JPanel {
                 vector.add(resultSet.getString("lname"));
                 vector.add(resultSet.getString("mobile"));
                 vector.add(resultSet.getString("username"));
-                vector.add(resultSet.getString("user_type_id"));
+                vector.add(resultSet.getString("type"));
                 vector.add(resultSet.getString("status"));
                 dtm.addRow(vector);
                 
             }
             
         }catch (Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    private void loadTypes(){
+        
+        try {
+            
+            ResultSet rs1 = MySQL2.executeSearch("SELECT * FROM `user_type`");
+            
+            Vector vector = new Vector();
+            vector.add("Select");
+            
+            while (rs1.next()) {
+                vector.add(rs1.getString("type"));
+            }
+            
+            DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) jComboBox1.getModel();
+            
+            comboBoxModel.removeAllElements();
+            
+            comboBoxModel.addAll(vector);
+            jComboBox1.setSelectedIndex(0);
+            
+        }catch (Exception e) {
             e.printStackTrace();
         }
         
@@ -260,12 +288,12 @@ public class userManagement1 extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/close.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/close03.png"))); // NOI18N
         jLabel8.setText(bundle.getString("userManagement1.jLabel8.text")); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,9 +308,9 @@ public class userManagement1 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 946, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 941, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addGap(25, 25, 25))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(285, Short.MAX_VALUE)
@@ -294,13 +322,13 @@ public class userManagement1 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(44, 44, 44)
+                    .addGap(65, 65, 65)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
