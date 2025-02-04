@@ -1,26 +1,26 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package gui;
 
 import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import model.MySQL2;
+
 /**
  *
- * @author User
+ * @author Asus
  */
-public class Invoice extends javax.swing.JFrame {
+public class invoice1 extends javax.swing.JPanel {
 
     private Home home;
-    
-    public Invoice(Home home) {
+
+    /**
+     * Creates new form invoice1
+     */
+    public invoice1(Home home) {
         initComponents();
+
         this.home = home;
     }
 
@@ -91,24 +91,23 @@ public class Invoice extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0)));
 
-        jLabel1.setText("Username:");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("gui/Bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("invoice1.jLabel1.text")); // NOI18N
 
-        jLabel2.setText("Hello, ");
+        jLabel2.setText(bundle.getString("invoice1.jLabel2.text")); // NOI18N
 
-        jLabel3.setText("Name");
+        jLabel3.setText(bundle.getString("invoice1.jLabel3.text")); // NOI18N
 
-        jLabel10.setText("SAMPLE USERNAME");
+        jLabel10.setText(bundle.getString("invoice1.jLabel10.text")); // NOI18N
 
-        jLabel11.setText("Daily Invoice Count :");
+        jLabel11.setText(bundle.getString("invoice1.jLabel11.text")); // NOI18N
 
-        jLabel12.setText("0");
+        jLabel12.setText(bundle.getString("invoice1.jLabel12.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -149,17 +148,17 @@ public class Invoice extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 0)));
 
-        jLabel16.setText("Customer Mobile");
+        jLabel16.setText(bundle.getString("invoice1.jLabel16.text")); // NOI18N
 
-        jLabel17.setText("First Name");
+        jLabel17.setText(bundle.getString("invoice1.jLabel17.text")); // NOI18N
 
-        jLabel18.setText("Last Name");
+        jLabel18.setText(bundle.getString("invoice1.jLabel18.text")); // NOI18N
 
-        jLabel20.setText("Points");
+        jLabel20.setText(bundle.getString("invoice1.jLabel20.text")); // NOI18N
 
-        jLabel21.setText("0");
+        jLabel21.setText(bundle.getString("invoice1.jLabel21.text")); // NOI18N
 
-        jButton1.setText("Register");
+        jButton1.setText(bundle.getString("invoice1.jButton1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -208,7 +207,7 @@ public class Invoice extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 0)));
 
-        jLabel25.setText("Barcode");
+        jLabel25.setText(bundle.getString("invoice1.jLabel25.text")); // NOI18N
 
         jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -216,48 +215,48 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
 
-        jLabel26.setText("Product ID");
+        jLabel26.setText(bundle.getString("invoice1.jLabel26.text")); // NOI18N
 
-        jLabel30.setText("Brand");
+        jLabel30.setText(bundle.getString("invoice1.jLabel30.text")); // NOI18N
 
-        jLabel31.setText("SAMPLE");
+        jLabel31.setText(bundle.getString("invoice1.jLabel31.text")); // NOI18N
 
-        jLabel32.setText("1");
+        jLabel32.setText(bundle.getString("invoice1.jLabel32.text")); // NOI18N
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel27.setText("Poduct Name");
+        jLabel27.setText(bundle.getString("invoice1.jLabel27.text")); // NOI18N
 
-        jLabel33.setText("SAMPLE");
+        jLabel33.setText(bundle.getString("invoice1.jLabel33.text")); // NOI18N
 
-        jLabel34.setText("Color");
+        jLabel34.setText(bundle.getString("invoice1.jLabel34.text")); // NOI18N
 
-        jLabel35.setText("SAMPLE");
+        jLabel35.setText(bundle.getString("invoice1.jLabel35.text")); // NOI18N
 
-        jLabel36.setText("Size");
+        jLabel36.setText(bundle.getString("invoice1.jLabel36.text")); // NOI18N
 
-        jLabel37.setText("SAMPLE");
+        jLabel37.setText(bundle.getString("invoice1.jLabel37.text")); // NOI18N
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel28.setText("Main Category");
+        jLabel28.setText(bundle.getString("invoice1.jLabel28.text")); // NOI18N
 
-        jLabel38.setText("SAMPLE");
+        jLabel38.setText(bundle.getString("invoice1.jLabel38.text")); // NOI18N
 
-        jLabel29.setText("Price");
+        jLabel29.setText(bundle.getString("invoice1.jLabel29.text")); // NOI18N
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.00"))));
-        jFormattedTextField1.setText("0");
+        jFormattedTextField1.setText(bundle.getString("invoice1.jFormattedTextField1.text")); // NOI18N
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel39.setText("Sub Category");
+        jLabel39.setText(bundle.getString("invoice1.jLabel39.text")); // NOI18N
 
-        jLabel40.setText("SAMPLE");
+        jLabel40.setText(bundle.getString("invoice1.jLabel40.text")); // NOI18N
 
-        jLabel41.setText("Availlability");
+        jLabel41.setText(bundle.getString("invoice1.jLabel41.text")); // NOI18N
 
-        jLabel42.setText("SAMPLE");
+        jLabel42.setText(bundle.getString("invoice1.jLabel42.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -394,23 +393,23 @@ public class Invoice extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setText("Print Invoice");
+        jButton2.setText(bundle.getString("invoice1.jButton2.text")); // NOI18N
 
-        jLabel13.setText("Balance");
+        jLabel13.setText(bundle.getString("invoice1.jLabel13.text")); // NOI18N
 
-        jLabel14.setText("50");
+        jLabel14.setText(bundle.getString("invoice1.jLabel14.text")); // NOI18N
 
-        jLabel9.setText("Paid Amount");
+        jLabel9.setText(bundle.getString("invoice1.jLabel9.text")); // NOI18N
 
-        jLabel6.setText("Total");
+        jLabel6.setText(bundle.getString("invoice1.jLabel6.text")); // NOI18N
 
-        jLabel7.setText("2000");
+        jLabel7.setText(bundle.getString("invoice1.jLabel7.text")); // NOI18N
 
-        jLabel5.setText("Total Quantity");
+        jLabel5.setText(bundle.getString("invoice1.jLabel5.text")); // NOI18N
 
-        jLabel8.setText("0");
+        jLabel8.setText(bundle.getString("invoice1.jLabel8.text")); // NOI18N
 
-        jCheckBox1.setText("Redeem Points  :    ");
+        jCheckBox1.setText(bundle.getString("invoice1.jCheckBox1.text")); // NOI18N
         jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -419,7 +418,7 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Payment Method");
+        jLabel4.setText(bundle.getString("invoice1.jLabel4.text")); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -453,7 +452,7 @@ public class Invoice extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 66, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -513,8 +512,8 @@ public class Invoice extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -523,59 +522,43 @@ public class Invoice extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            System.out.println("Enter key");
+            String barcode = jTextField9.getText();
+
+            try {
+
+                MySQL2.executeSearch("SELECT * FROM `stock` INNER JOIN `size` "
+                        + "ON `stock`.`size_id` = `size`.`id` "
+                        + "INNER JOIN `colour` "
+                        + "ON `stock`.`colour_id` = `colour`.`id` "
+                        + "INNER JOIN `product` "
+                        + "ON `stock`.`product_id` = `product`.`id` "
+                        + "INNER JOIN `brand` "
+                        + "ON `product`.`brand_id` = `brand`.`id` "
+                        + "INNER JOIN `category` "
+                        + "ON `product`.`category_id` = `category`.`id` "
+                        + "INNER JOIN `main_category` "
+                        + "ON `category`.`main_category_id` = `main_category`.`id` "
+                        + "INNER JOIN `sub_category` "
+                        + "ON `category`.`sub_category_id` = `sub_category`.`id` "
+                        + "WHERE barcode = '" + barcode + "'; " );
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }//GEN-LAST:event_jTextField9KeyReleased
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
-        
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            System.out.println("OK");
-        }
-        
-    }//GEN-LAST:event_jTextField9KeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//                new Invoice1().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
