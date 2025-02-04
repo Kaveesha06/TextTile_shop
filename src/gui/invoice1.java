@@ -1,11 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package gui;
 
 import java.awt.event.KeyEvent;
 import model.MySQL2;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,8 +20,8 @@ public class invoice1 extends javax.swing.JPanel {
      */
     public invoice1(Home home) {
         initComponents();
-
         this.home = home;
+        jTextField9.grabFocus();
     }
 
     /**
@@ -41,6 +41,7 @@ public class invoice1 extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -109,6 +110,9 @@ public class invoice1 extends javax.swing.JPanel {
 
         jLabel12.setText(bundle.getString("invoice1.jLabel12.text")); // NOI18N
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/close03.png"))); // NOI18N
+        jLabel15.setText(bundle.getString("invoice1.jLabel15.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -122,11 +126,13 @@ public class invoice1 extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(180, 180, 180)
+                .addGap(115, 115, 115)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,8 +147,8 @@ public class invoice1 extends javax.swing.JPanel {
                         .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(16, 16, 16))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -209,6 +215,11 @@ public class invoice1 extends javax.swing.JPanel {
 
         jLabel25.setText(bundle.getString("invoice1.jLabel25.text")); // NOI18N
 
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
         jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField9KeyReleased(evt);
@@ -277,7 +288,7 @@ public class invoice1 extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,7 +307,7 @@ public class invoice1 extends javax.swing.JPanel {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +543,7 @@ public class invoice1 extends javax.swing.JPanel {
 
             try {
 
-                MySQL2.executeSearch("SELECT * FROM `stock` INNER JOIN `size` "
+                ResultSet resultSet = MySQL2.executeSearch("SELECT * FROM `stock` INNER JOIN `size` "
                         + "ON `stock`.`size_id` = `size`.`id` "
                         + "INNER JOIN `colour` "
                         + "ON `stock`.`colour_id` = `colour`.`id` "
@@ -546,7 +557,57 @@ public class invoice1 extends javax.swing.JPanel {
                         + "ON `category`.`main_category_id` = `main_category`.`id` "
                         + "INNER JOIN `sub_category` "
                         + "ON `category`.`sub_category_id` = `sub_category`.`id` "
-                        + "WHERE barcode = '" + barcode + "'; " );
+                        + "WHERE barcode = '" + barcode + "'; ");
+
+                if (resultSet.next()) {
+                    String pid = resultSet.getString("product.id");
+                    String pName = resultSet.getString("product.name");
+                    String mCat = resultSet.getString("main_category.c_name");
+                    String sCat = resultSet.getString("sub_category.name");
+                    String brand = resultSet.getString("brand.name");
+                    String colour = resultSet.getString("colour.name");
+                    String size = resultSet.getString("size.name");
+                    String sPrice = resultSet.getString("stock.selling_price");
+                    String availability = resultSet.getString("stock.available_qty");
+
+                    jLabel32.setText(pid);
+                    jLabel33.setText(pName);
+                    jLabel38.setText(mCat);
+                    jLabel40.setText(sCat);
+                    jLabel31.setText(brand);
+                    jLabel35.setText(colour);
+                    jLabel37.setText(size);
+                    jFormattedTextField1.setText(sPrice);
+                    jLabel42.setText(availability);
+
+                    Vector vector = new Vector();
+                    vector.add(barcode);
+                    vector.add(pid);
+                    vector.add(pName);
+                    vector.add(mCat);
+                    vector.add(sCat);
+                    vector.add(brand);
+                    vector.add(colour);
+                    vector.add(size);
+                    vector.add(sPrice);
+                    vector.add(availability);
+
+                    DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+                    defaultTableModel.addRow(vector);
+
+                } else {
+
+                    jLabel32.setText("");
+                    jLabel33.setText("");
+                    jLabel38.setText("");
+                    jLabel40.setText("");
+                    jLabel31.setText("");
+                    jLabel35.setText("");
+                    jLabel37.setText("");
+                    jFormattedTextField1.setText("");
+                    jLabel42.setText("");
+
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -558,6 +619,91 @@ public class invoice1 extends javax.swing.JPanel {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        
+        if (jTextField9.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Barcode is Empty");
+        
+        }else {
+            
+            String barcode = jTextField9.getText();
+
+            try {
+
+                ResultSet resultSet = MySQL2.executeSearch("SELECT * FROM `stock` INNER JOIN `size` "
+                        + "ON `stock`.`size_id` = `size`.`id` "
+                        + "INNER JOIN `colour` "
+                        + "ON `stock`.`colour_id` = `colour`.`id` "
+                        + "INNER JOIN `product` "
+                        + "ON `stock`.`product_id` = `product`.`id` "
+                        + "INNER JOIN `brand` "
+                        + "ON `product`.`brand_id` = `brand`.`id` "
+                        + "INNER JOIN `category` "
+                        + "ON `product`.`category_id` = `category`.`id` "
+                        + "INNER JOIN `main_category` "
+                        + "ON `category`.`main_category_id` = `main_category`.`id` "
+                        + "INNER JOIN `sub_category` "
+                        + "ON `category`.`sub_category_id` = `sub_category`.`id` "
+                        + "WHERE barcode = '" + barcode + "'; ");
+
+                if (resultSet.next()) {
+                    String pid = resultSet.getString("product.id");
+                    String pName = resultSet.getString("product.name");
+                    String mCat = resultSet.getString("main_category.c_name");
+                    String sCat = resultSet.getString("sub_category.name");
+                    String brand = resultSet.getString("brand.name");
+                    String colour = resultSet.getString("colour.name");
+                    String size = resultSet.getString("size.name");
+                    String sPrice = resultSet.getString("stock.selling_price");
+                    String availability = resultSet.getString("stock.available_qty");
+
+                    jLabel32.setText(pid);
+                    jLabel33.setText(pName);
+                    jLabel38.setText(mCat);
+                    jLabel40.setText(sCat);
+                    jLabel31.setText(brand);
+                    jLabel35.setText(colour);
+                    jLabel37.setText(size);
+                    jFormattedTextField1.setText(sPrice);
+                    jLabel42.setText(availability);
+
+                    Vector vector = new Vector();
+                    vector.add(barcode);
+                    vector.add(pid);
+                    vector.add(pName);
+                    vector.add(mCat);
+                    vector.add(sCat);
+                    vector.add(brand);
+                    vector.add(colour);
+                    vector.add(size);
+                    vector.add(sPrice);
+                    vector.add(availability);
+
+                    DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+                    defaultTableModel.addRow(vector);
+
+                } else {
+
+                    jLabel32.setText("");
+                    jLabel33.setText("");
+                    jLabel38.setText("");
+                    jLabel40.setText("");
+                    jLabel31.setText("");
+                    jLabel35.setText("");
+                    jLabel37.setText("");
+                    jFormattedTextField1.setText("");
+                    jLabel42.setText("");
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        }
+        
+    }//GEN-LAST:event_jTextField9ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -572,6 +718,7 @@ public class invoice1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
